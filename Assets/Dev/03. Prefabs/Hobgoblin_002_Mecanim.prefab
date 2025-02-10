@@ -48369,7 +48369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &434740
 Transform:
   m_ObjectHideFlags: 0
@@ -50215,7 +50215,7 @@ GameObject:
   - component: {fileID: -8083253943278597144}
   m_Layer: 0
   m_Name: Hobgoblin_002_Mecanim
-  m_TagString: Untagged
+  m_TagString: MONSTER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50254,7 +50254,7 @@ Animator:
   m_GameObject: {fileID: 165622}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d4522b4f353f17142915782c04c3d8bd, type: 3}
-  m_Controller: {fileID: 9100000, guid: 275d021b988249d4e82293cc964c2ca9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 46607580fe38bb744b4c1cacee894e74, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -50280,7 +50280,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -50308,7 +50308,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
@@ -50327,3 +50327,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   hp: 0
+  isMove: 1
