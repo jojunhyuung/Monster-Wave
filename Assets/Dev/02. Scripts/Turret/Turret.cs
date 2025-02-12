@@ -6,6 +6,7 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    
     private Animator anim;
     public ParticleSystem ps;
 
@@ -14,6 +15,7 @@ public class Turret : MonoBehaviour
     private float timer;
     public float shootCooldown = 0.5f;
     
+    public List<Transform> targets = new List<Transform>();
     public Transform currentTarget;
     public Transform headTf;
 
@@ -27,27 +29,42 @@ public class Turret : MonoBehaviour
         if (currentTarget != null) // 타겟 있음
         {
             headTf.LookAt(currentTarget);
+            Shoot();
         }
-        
-        Shoot();
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("MONSTER"))
         {
-            currentTarget = other.transform;
+            targets.Add(other.transform);
+
+            SetTarget();
         }
     }
-
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("MONSTER"))
         {
-            currentTarget = null;
+            targets.Remove(other.transform);
+            
+            SetTarget(other.transform);
+            // currentTarget = null;
         }
     }
 
+    public void SetTarget()
+    {
+        if (targets.Count > 0)
+            currentTarget = targets[0];
+    }
+    public void SetTarget(Transform prevTarget)
+    {
+        targets.Remove(prevTarget);
+        
+        if (targets.Count > 0)
+            currentTarget = targets[0];
+    }
     private void Shoot()
     {
         timer += Time.deltaTime;
@@ -62,7 +79,7 @@ public class Turret : MonoBehaviour
 
     private void CreateBullet()
     {
-        GameObject bulletObj = Instantiate(bulletPrefab, shootTf.position, Quaternion.identity);
+        GameObject bulletObj = Instantiate(bulletPrefab, shootTf.position, shootTf.rotation);
 
         bulletObj.GetComponent<Rigidbody>().AddForce(shootTf.forward * 50f, ForceMode.Impulse);
     }
